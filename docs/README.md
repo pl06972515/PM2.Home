@@ -1,4 +1,4 @@
-<h1 align="center">Newbe.ObjectVisitor</h1>
+<h1 align="center">PM2.Home</h1>
 <p align="center">
 </p><br/>
 
@@ -8,86 +8,89 @@
 
 
 
+
 >[!WARNING|style: flat|label: 简要说明]
 >
->帮助开发者可以用最简单的最高效的方式[ 访问一个普通`class`的所有属性 ]<span style='color:Blue'>[ 从而实现：验证、映射、收集等等操作 ]</span>
+>[`PM2.HomeAbstract`]首页模板化，可帮助开发者快速实现[ 首页豆腐块相关业务 ]
 >
->- <span style='color:red'>[ 效率 ]</span>类库使用[ 表达式树实现 ]，因此它拥有比直接使用反射快上`10`倍的性能
->- <span style='color:red'>[ 可读性 ]</span>通过类库，可以使用[`链式 API`]和[`命名方法`]来创建一个委托
->- <span style='color:red'>[ 扩展性 ]</span>通过类库，可以更简便的方式来访问[ 一个类所有的属性 ]
+>- <a href="./wwwroot/UML/PM2.HomeAbstract.drawio.html" target="_blank"><img src="https://img.shields.io/badge/UML-FCC624?style=plastic&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABX0lEQVQ4T52TPyvFcRTGP49MSmTwp7wHFouFQXeQVyBJyrW4g0IGt+vPIMnkLiiJwQsw3JJSBiPlBVgxKINFqUfn9vvdfq7/vuPpnM85z3POV/zi2e6UdP9Zqn6qt90IPAErkjbr838DGATOgWFJlf8A1oFZoEXSy7cA21NAPzApyZFs+wp4BHLAPnApaS8F1STYngG2gUNgIgC224EHYB7YAg6AcSCfQqoA23NAGBTk6Uz3MeAI6JF0Yzvyd4CYtCCpHG2KwCpQllTIarQdxTlJHXXx3QRSDMASsPYFIMavSJqoA4TUkFxMJZSA5awE273ANTAq6TiRmpVQkrSaNTGlVk0EFoBYYZukp0R/amJN7rtDsh3F3cAQcAY0S+pLujcAp8CtpPyHNWaSmmIxyfluSAqPqs92M/Ccbilin56y7RHgBBiQdPHdf/kKsAhE51ZJr38GJON2Sbr76be+ARXylwMoSE5uAAAAAElFTkSuQmCC" /></a>
 >
->---
+>- <a href="https://github.com/pl06972515/PM2.Home" target="_blank"><img src="https://img.shields.io/badge/NuGet-PM2.Home-orange?style=plastic&labelColor=004880&logo=NuGet" /></a>
 >
+>- [`namespace: PM2.Home`]
 >
+>  <br>
 >
->- <a href="https://github.com/newbe36524/Newbe.ObjectVisitor/blob/main/README_zh_Hans.md" target="_blank"><img src="https://img.shields.io/badge/NuGet-Newbe.ObjectVisitor-orange?style=plastic&labelColor=004880&logo=NuGet" /></a>
+
+
+
+
+>[!NOTE|style: flat|label: yaml - 配置参数介绍]
 >
->- [<span style='color:#008B00'>[👓 官方帮助文档 ]</span>](http://cn.ov.newbe.pro/zh/001-quick-started/002-create-and-cache-your-object-visitor ':target=_blank')
+>- `HomeType`配置类型
 >
->---
+>  \- [`Custom`]自定义
 >
-><span style='color:red'>[ 案例说明 ]</span>创建一个简单的数据模型，通过`String`实现拼接其所有属性的业务逻辑
+>  \- [`Report`]标准报表
 >
->```csharp
->public class OrderInfo
->{
->    
->       public int ID { get; set; }
->       public string Name { get; set; }
->       public decimal TotalPrice { get; set; }
->    
->}
+>  \- [`CircChart`]饼状图
+>
+>  \- [`HistoChart`]柱状图
+>
+>  \- [`LineChart`]折线图
+>
+>  \- [`PanelChart`]仪表盘
+>
+>  <br/>
+>
+>- `Regex`匹配模式(`正则表达式`)
+>
+>- `ConfigFullName`配置完全限定名称(`IHomeConfig`)
+>
+>- `SlidingExpiration`缓存(`单位: 秒, -1 禁用缓存`)
+>
+>- `IsEnable`配置是否生效(`True | False`)
+>
+>```yaml
+>##  案例说明  ##
+>- #首页顶部(新签合同书, 新中标项目, 我的待审批, 我的新任务, 公司公告) 
+>  HomeType: Custom 
+>  Regex: "^Top$" 
+>  ConfigFullName: 'PM2.Home.Config.TopHomeConfig' 
+>  SlidingExpiration: 60 
+>  IsEnable: True
+>
+>- #标注报表 
+>  HomeType: Report 
+>  Regex: "^T?3000305$" 
+>  ConfigFullName: 'PM2.Home.Config.NoticeHomeConfig' 
+>  SlidingExpiration: 60 
+>  IsEnable: True
+>
+>- #饼状图 
+>  HomeType: CircChart 
+>  Regex: "^T?3000409$" 
+>  ConfigFullName: 'PM2.Home.Config.CircDemoHomeConfig' 
+>  SlidingExpiration: 60 
+>  IsEnable: True
+>  
+>- #柱状图 
+>  HomeType: HistoChart 
+>  Regex: "^T?3000605$" 
+>  ConfigFullName: 'PM2.Home.Config.HistoDemoHomeConfig' 
+>  SlidingExpiration: 60 
+>  IsEnable: True
+>
+>- #折线图 
+>  HomeType: LineChart 
+>  Regex: "^T?3000905$" 
+>  ConfigFullName: 'PM2.Home.Config.LineDemoHomeConfig' 
+>  SlidingExpiration: 60 
+>  IsEnable: True
 >
 >```
 >
 ><br/>
-
-<!-- tabs:start -->
-
-#### **常规实现**
-
-```csharp
-var order = new OrderInfo
-{
-      ID = 1,
-      Name = "张三",
-      TotalPrice = 100M
-};
-
-var sb = new StringBuilder();
-sb.AppendFormat("{0}: {1}{2}", nameof(order.ID), order.ID, Environment.NewLine);
-sb.AppendFormat("{0}: {1}{2}", nameof(order.Name), order.Name, Environment.NewLine);
-sb.AppendFormat("{0}: {1}{2}", nameof(order.TotalPrice), order.TotalPrice, Environment.NewLine);
-
-Console.WriteLine(sb.ToString());
-
-```
-
-
-
-#### **Object Visitor**
-
-```csharp
-var order = new OrderInfo
-{
-      ID = 1,
-      Name = "张三",
-      TotalPrice = 100M
-};
-var sb = new StringBuilder();
-
-var visitor = order.V()
-                   .ForEach((name, value) => sb.AppendFormat("{0}: {1}{2}", name, value, Environment.NewLine));
-visitor.Run();
-Console.WriteLine(sb.ToString());
-
-```
-
-
-
-
-
-<!-- tabs:end -->
 
 
 
