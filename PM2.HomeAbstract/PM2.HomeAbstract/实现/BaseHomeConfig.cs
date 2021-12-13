@@ -8,7 +8,7 @@ using System.Runtime.Caching;
 
 #endregion
 
-namespace PM2.Home
+namespace PM2.Home.Abstract
 {
     public abstract class BaseHomeConfig : IHomeConfig
     {

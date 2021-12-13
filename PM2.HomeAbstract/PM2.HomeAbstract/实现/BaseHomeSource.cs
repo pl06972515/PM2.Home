@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 #endregion
 
-namespace PM2.Home
+namespace PM2.Home.Abstract
 {
     public abstract class BaseHomeSource : IHomeSource
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PM2.Home
+namespace PM2.Home.Abstract
 {
     public interface IObjectCache
     {

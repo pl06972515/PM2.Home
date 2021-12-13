@@ -11,7 +11,7 @@ using YamlDotNet.RepresentationModel;
 
 #endregion
 
-namespace PM2.Home
+namespace PM2.Home.Abstract
 {
     public static class IHomeManageExceptions
     {

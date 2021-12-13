@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace PM2.Home
+namespace PM2.Home.Abstract
 {
 
     public interface IHomeModel

@@ -8,7 +8,7 @@ using System.Collections.Concurrent;
 
 #endregion
 
-namespace PM2.Home
+namespace PM2.Home.Abstract
 {
     public interface IHomeBuilder
     {
